@@ -178,7 +178,7 @@ class VisionTransformer(nn.Module):
     def no_weight_decay(self):
         return {'pos_embed', 'cls_token'}
 
-    def forward(self, x, register_blk=-1):
+    def forward(self, x, register_blk : int = -1):
         B = x.shape[0]
         x = self.patch_embed(x)
 
