@@ -61,7 +61,7 @@ class Attention(nn.Module):
     def get_attn_gradients(self):
         return self.attn_gradients
     
-    def save_attention_map(self, attention_map : torch.tensor):
+    def save_attention_map(self, attention_map : torch.FloatTensor):
         self.attention_map = attention_map
         
     def get_attention_map(self):
