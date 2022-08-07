@@ -189,7 +189,7 @@ class VisionTransformer(nn.Module):
         x = self.pos_drop(x)
 
         for i,blk in enumerate(self.blocks):
-            x = blk(x, register_blk==i)
+            x = blk(x, bool(register_blk==i))
         x = self.norm(x)
         
         return x
