@@ -105,7 +105,7 @@ class Block(nn.Module):
             self.attn = checkpoint_wrapper(self.attn)
             self.mlp = checkpoint_wrapper(self.mlp)
 
-    def forward(self, x, register_hook=False):
+    def forward(self, x, register_hook : bool = False):
         x = x + self.drop_path(self.attn(self.norm1(x), register_hook=register_hook))
         x = x + self.drop_path(self.mlp(self.norm2(x)))
         return x
