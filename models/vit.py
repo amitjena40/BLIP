@@ -53,7 +53,7 @@ class Attention(nn.Module):
         self.proj = nn.Linear(dim, dim)
         self.proj_drop = nn.Dropout(proj_drop)
         self.attn_gradients = None
-        self.attention_map = torch.Tensor()
+        self.attention_map = torch.Tensor
         
     def save_attn_gradients(self, attn_gradients):
         self.attn_gradients = attn_gradients
@@ -61,7 +61,7 @@ class Attention(nn.Module):
     def get_attn_gradients(self):
         return self.attn_gradients
     
-    def save_attention_map(self, attention_map : torch.Tensor):
+    def save_attention_map(self, attention_map):
         self.attention_map = attention_map
         
     def get_attention_map(self):
