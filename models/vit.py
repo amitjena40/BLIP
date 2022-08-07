@@ -67,7 +67,7 @@ class Attention(nn.Module):
     def get_attention_map(self):
         return self.attention_map
     
-    def forward(self, x, register_hook_check=False):
+    def forward(self, x, register_hook=False):
         B, N, C = x.shape
         qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
         q, k, v = qkv[0], qkv[1], qkv[2]   # make torchscript happy (cannot use tensor as tuple)
@@ -76,7 +76,7 @@ class Attention(nn.Module):
         attn = attn.softmax(dim=-1)
         attn = self.attn_drop(attn)
                 
-        if register_hook_check:
+        if register_hook:
             self.save_attention_map(attn)
             attn.register_hook(self.save_attn_gradients)        
 
